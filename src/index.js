@@ -16,21 +16,17 @@ const AppHeader = () => {
 }
 
 const SearchPanel = () => {
-  return <input placeholder="search" />;
+  const searchPlaceholder = "Type here to search";
+  return <input placeholder={searchPlaceholder} />;
 }
 
 const App = () => {
 
-  const isLoggedIn = true;
-  const loginBox = <span>Log in please</span>
-  const welcomeBox = <span>Welcome back</span>
-
   return (
     <div>
-      {!isLoggedIn ? loginBox : welcomeBox}
       <AppHeader />
       <SearchPanel />
-      <TodoList />
+      <TodoList items={['Item1', 'Item2']} />
     </div>
   );
 }
