@@ -1,0 +1,15 @@
+.app-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+}
+
+h1 {
+    display: inline;
+}
+
+h2 {
+    display: inline;
+    font-size: 22px;
+    color: gray;
+}
