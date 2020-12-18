@@ -25,8 +25,11 @@ const SearchPanel = () => {
 
 const App = () => {
 
+  const value = '<script>alert("")</script>';
+
   return (
     <div>
+      { value}
       <AppHeader />
       <SearchPanel />
       <TodoList />
