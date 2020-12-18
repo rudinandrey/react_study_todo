@@ -5,7 +5,10 @@ const SearchPanel = () => {
     const searchStyle = {
         fontSize: '25px'
     };
-    return <input placeholder={searchPlaceholder} style={searchStyle} />;
+    return (<input placeholder={searchPlaceholder}
+        style={searchStyle}
+        className="form-control" />
+    );
 }
 
 export default SearchPanel;

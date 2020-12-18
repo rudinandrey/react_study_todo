@@ -13,11 +13,23 @@ const App = () => {
     { label: 'Have a lunch', important: false, id: 3 }
   ];
   return (
-    <div>
-      <AppHeader />
-      <SearchPanel />
-      <TodoList todos={todoData} />
-    </div>
+    <div className="container">
+      <div className="row  form-group">
+        <div className="col">
+          <AppHeader />
+        </div>
+      </div>
+      <div className="row form-group">
+        <div className="col">
+          <SearchPanel />
+        </div>
+      </div>
+      <div className="row">
+        <div className="col">
+          <TodoList todos={todoData} />
+        </div>
+      </div>
+    </div >
   );
 }
 
