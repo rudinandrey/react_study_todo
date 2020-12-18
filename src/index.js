@@ -17,7 +17,10 @@ const AppHeader = () => {
 
 const SearchPanel = () => {
   const searchPlaceholder = "Type here to search";
-  return <input placeholder={searchPlaceholder} />;
+  const searchStyle = {
+    fontSize: '25px'
+  };
+  return <input placeholder={searchPlaceholder} style={searchStyle} />;
 }
 
 const App = () => {
@@ -26,7 +29,7 @@ const App = () => {
     <div>
       <AppHeader />
       <SearchPanel />
-      <TodoList items={['Item1', 'Item2']} />
+      <TodoList />
     </div>
   );
 }
