@@ -7,7 +7,7 @@ class TodoListItem extends Component {
 
     state = {
         done: false,
-        important: false
+        important: this.props.important
     };
 
     onLabelClick = () => {
