@@ -17,14 +17,15 @@ export default class App extends Component {
     };
 
     deleteItem = (id) => {
-        console.log(`del ${id}`);
-
         this.setState(({ todoData }) => {
             const idx = todoData.findIndex((el) => el.id === id);
-            console.log(idx);
-            todoData.splice(idx, 1);
+
+            const before = todoData.slice(0, idx);
+            const after = todoData.slice(idx + 1);
+            const newTodoData = [...before, ...after];
+
             return {
-                todoData: todoData
+                todoData: newTodoData
             };
         });
     }
