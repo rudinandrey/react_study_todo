@@ -12,14 +12,18 @@ class TodoListItem extends Component {
 
     onLabelClick = () => {
         console.log(`Click ${this.props.label}`);
-        this.setState({
-            done: !this.state.done
+        this.setState((state) => {
+            return {
+                done: !state.done
+            }
         });
     };
 
     onMarkImportant = () => {
-        this.setState({
-            important: !this.state.important
+        this.setState((state) => {
+            return {
+                important: !state.important
+            }
         });
     }
 
