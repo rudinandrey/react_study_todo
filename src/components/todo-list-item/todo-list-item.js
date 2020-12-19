@@ -30,7 +30,7 @@ class TodoListItem extends Component {
 
     render() {
 
-        const { label } = this.props;
+        const { label, onDeleted } = this.props;
         const { done, important } = this.state;
 
 
@@ -52,7 +52,7 @@ class TodoListItem extends Component {
                 </span>
 
                 <div className="todo-list-item-buttons">
-                    <button className="btn btn-danger action-button">
+                    <button className="btn btn-danger action-button" onClick={onDeleted}>
                         <i className="fa fa-trash" aria-hidden="true"></i>
                     </button>
                     <button className="btn btn-success" onClick={this.onMarkImportant}>
