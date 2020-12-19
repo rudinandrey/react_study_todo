@@ -10,15 +10,6 @@ const TodoList = ({ todos }) => {
         return (
             <li key={id} className="list-group-item">
                 <TodoListItem {...itemProps} />
-                <div>
-                    <button className="btn btn-danger">
-                        <i className="fa fa-trash" aria-hidden="true"></i>
-                    </button>&nbsp;
-                    <button className="btn btn-success">
-                        <i className="fa fa-bolt" aria-hidden="true"></i>
-                    </button>
-                </div>
-
             </li >
         );
     });
