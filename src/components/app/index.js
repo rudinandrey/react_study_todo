@@ -23,7 +23,9 @@ export default class App extends Component {
             const idx = todoData.findIndex((el) => el.id === id);
             console.log(idx);
             todoData.splice(idx, 1);
-            return todoData;
+            return {
+                todoData: todoData
+            };
         });
     }
 
