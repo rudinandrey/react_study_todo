@@ -4,3 +4,11 @@
     justify-content: space-between;
     align-items: center;
 }
+
+.done {
+    text-decoration: line-through;
+}
+
+.action-button {
+    margin-right: 5px;
+}
