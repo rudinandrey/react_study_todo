@@ -20,12 +20,11 @@ export default class App extends Component {
         this.setState(({ todoData }) => {
             const idx = todoData.findIndex((el) => el.id === id);
 
-            const before = todoData.slice(0, idx);
-            const after = todoData.slice(idx + 1);
-            const newTodoData = [...before, ...after];
-
             return {
-                todoData: newTodoData
+                todoData: [
+                    ...todoData.slice(0, idx),
+                    ...todoData.slice(idx + 1)
+                ]
             };
         });
     }
