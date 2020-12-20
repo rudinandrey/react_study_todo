@@ -9,15 +9,25 @@ import "./app.css";
 import AddItem from "../add-item";
 
 export default class App extends Component {
-  
+
+  maxId = 0;
+
   state = {
     todoData: [
-      { label: "Drink Coffee", important: false, id: 1 },
-      { label: "Build React App", important: true, id: 2 },
-      { label: "Have a lunch", important: false, id: 3 },
+      this.createNewItem('Drink Coffee'),
+      this.createNewItem('Build React App'),
+      this.createNewItem('Have a lunch')
     ],
   };
   
+  createNewItem(label) {
+    return {
+      label,
+      important: false,
+      done: false,
+      id: this.maxId++
+    }
+  }
 
   deleteItem = (id) => {
     this.setState(({ todoData }) => {
@@ -35,11 +45,7 @@ export default class App extends Component {
       this.state.todoData.reduce((max, el) => (el.id > max ? el.id : max), 0) +
       1;
     console.log(maxId);
-    const newItem = {
-      label: text,
-      important: false,
-      id: maxId
-    };
+    const newItem = createNewItem(text);
 
     this.setState(({todoData}) => {
       const newArr = [...todoData, newItem];
@@ -51,10 +57,34 @@ export default class App extends Component {
 
   onToggleImportant = (id) => {
     console.log('### togle important ' + id);
+    this.setState(({todoData}) => {
+      const idx = todoData.findIndex((el) => el.id === id);
+      const oldItem = todoData[idx];
+      const newItem = {...oldItem, important: !oldItem.important};
+      return {
+        todoData: [
+          ...todoData.slice(0, idx), 
+          newItem, 
+          ...todoData.slice(idx + 1)
+        ]
+      }
+    });
   }
 
   onToggleDone = (id) => {
     console.log('### togle done ' + id);
+    this.setState(({todoData}) => {
+      const idx = todoData.findIndex((el) => el.id === id);
+      const oldItem = todoData[idx];
+      const newItem = {...oldItem, done: !oldItem.done};
+      return {
+        todoData: [
+          ...todoData.slice(0, idx), 
+          newItem, 
+          ...todoData.slice(idx + 1)
+        ]
+      }
+    });
   }
 
   render() {
