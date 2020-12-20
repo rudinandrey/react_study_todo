@@ -12,7 +12,6 @@ export default class AddItem extends Component {
     this.setState({
       label: e.target.value
     });
-    console.log(this.state.label);
   }
 
   onSubmit = (e) => {
@@ -21,6 +20,7 @@ export default class AddItem extends Component {
     this.setState({
       label: ""
     });
+    console.log(`### this.state.label is ${this.state.label}`);
   }
 
   render() {
@@ -31,7 +31,6 @@ export default class AddItem extends Component {
         <button
           type="button"
           className="btn btn-outline-secondary"
-          onClick={() => onAddItem(this.state.label)}
         >
           Add item
         </button>
