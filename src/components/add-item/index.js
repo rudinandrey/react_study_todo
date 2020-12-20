@@ -1,11 +1,16 @@
 import React, { Component } from "react";
 
+import './add-item.css';
+
 export default class AddItem extends Component {
+
+
+
   render() {
     const { onAddItem } = this.props;
     return (
-      <div className="add-item">
-        <div></div>
+      <form className="add-item d-flex">
+        <input type="text" className="form-control" onChange={this.onLabelChange} />
         <button
           type="button"
           className="btn btn-outline-secondary"
@@ -13,7 +18,7 @@ export default class AddItem extends Component {
         >
           Add item
         </button>
-      </div>
+      </form>
     );
   }
 }

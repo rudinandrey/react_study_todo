@@ -1,4 +1,12 @@
-.add-item {
+/* .add-item {
     display: flex;
     justify-content: space-between;
+} */
+
+.add-item input {
+  margin-right: 5px;
+}
+
+.add-item button {
+  width: 150px;
 }
