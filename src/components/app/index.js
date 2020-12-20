@@ -55,18 +55,22 @@ export default class App extends Component {
     });
   };
 
+  toggleProperty(arr, id, propertyName) {
+    const idx = arr.findIndex((el) => el.id === id);
+    const oldItem = arr[idx];
+    const newItem = {...oldItem, [propertyName]: !oldItem[propertyName]};
+    return [
+      ...arr.slice(0, idx), 
+      newItem, 
+      ...arr.slice(idx + 1)
+    ]
+  }
+
   onToggleImportant = (id) => {
     console.log('### togle important ' + id);
     this.setState(({todoData}) => {
-      const idx = todoData.findIndex((el) => el.id === id);
-      const oldItem = todoData[idx];
-      const newItem = {...oldItem, important: !oldItem.important};
       return {
-        todoData: [
-          ...todoData.slice(0, idx), 
-          newItem, 
-          ...todoData.slice(idx + 1)
-        ]
+        todoData: this.toggleProperty(todoData, id, 'important')
       }
     });
   }
@@ -74,15 +78,8 @@ export default class App extends Component {
   onToggleDone = (id) => {
     console.log('### togle done ' + id);
     this.setState(({todoData}) => {
-      const idx = todoData.findIndex((el) => el.id === id);
-      const oldItem = todoData[idx];
-      const newItem = {...oldItem, done: !oldItem.done};
       return {
-        todoData: [
-          ...todoData.slice(0, idx), 
-          newItem, 
-          ...todoData.slice(idx + 1)
-        ]
+        todoData: this.toggleProperty(todoData, id, 'done')
       }
     });
   }
@@ -90,8 +87,10 @@ export default class App extends Component {
   render() {
     const { todoData } = this.state;
 
-    const doneCount = this.state.todoData.filter((el)=>el.done).length;
-    const todoCount = this.state.todoData.length - doneCount;
+
+
+    const doneCount = todoData.filter((el)=>el.done).length;
+    const todoCount = todoData.length - doneCount;
 
     return (
       <div className="container">
