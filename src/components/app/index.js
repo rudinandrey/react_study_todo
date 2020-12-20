@@ -9,6 +9,7 @@ import "./app.css";
 import AddItem from "../add-item";
 
 export default class App extends Component {
+  
   state = {
     todoData: [
       { label: "Drink Coffee", important: false, id: 1 },
@@ -16,6 +17,7 @@ export default class App extends Component {
       { label: "Have a lunch", important: false, id: 3 },
     ],
   };
+  
 
   deleteItem = (id) => {
     this.setState(({ todoData }) => {
@@ -25,6 +27,14 @@ export default class App extends Component {
         todoData: [...todoData.slice(0, idx), ...todoData.slice(idx + 1)],
       };
     });
+  };
+
+  addItem = (text) => {
+    console.log("add new task");
+    const maxId =
+      this.state.todoData.reduce((max, el) => (el.id > max ? el.id : max), 0) +
+      1;
+    console.log(maxId);
   };
 
   render() {
@@ -51,7 +61,7 @@ export default class App extends Component {
         </div>
         <div className="row">
           <div className="col">
-            <AddItem />
+            <AddItem onAddItem={this.addItem} />
           </div>
         </div>
       </div>
