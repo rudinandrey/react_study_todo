@@ -35,6 +35,18 @@ export default class App extends Component {
       this.state.todoData.reduce((max, el) => (el.id > max ? el.id : max), 0) +
       1;
     console.log(maxId);
+    const newItem = {
+      label: text,
+      important: false,
+      id: maxId
+    };
+
+    this.setState(({todoData}) => {
+      const newArr = [...todoData, newItem];
+      return {
+        todoData: newArr
+      }
+    });
   };
 
   render() {
