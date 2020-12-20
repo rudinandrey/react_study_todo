@@ -49,6 +49,14 @@ export default class App extends Component {
     });
   };
 
+  onToggleImportant = (id) => {
+    console.log('### togle important ' + id);
+  }
+
+  onToggleDone = (id) => {
+    console.log('### togle done ' + id);
+  }
+
   render() {
     const { todoData } = this.state;
     return (
@@ -68,7 +76,10 @@ export default class App extends Component {
         </div>
         <div className="row form-group">
           <div className="col">
-            <TodoList todos={todoData} onDeleted={this.deleteItem} />
+            <TodoList todos={todoData} 
+              onDeleted={this.deleteItem} 
+              onToggleImportant={this.onToggleImportant} 
+              onToggleDone={this.onToggleDone} />
           </div>
         </div>
         <div className="row">

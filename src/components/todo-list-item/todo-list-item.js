@@ -30,7 +30,7 @@ class TodoListItem extends Component {
 
     render() {
 
-        const { label, onDeleted } = this.props;
+        const { label, onDeleted, onToggleImportant, onToggleDone } = this.props;
         const { done, important } = this.state;
 
 
@@ -47,7 +47,7 @@ class TodoListItem extends Component {
             <span className={classNames} >
                 <span
                     className="todo-list-item-label"
-                    onClick={this.onLabelClick}>
+                    onClick={onToggleDone}>
                     {label}
                 </span>
 
@@ -55,7 +55,7 @@ class TodoListItem extends Component {
                     <button className="btn btn-danger action-button" onClick={onDeleted}>
                         <i className="fa fa-trash" aria-hidden="true"></i>
                     </button>
-                    <button className="btn btn-success" onClick={this.onMarkImportant}>
+                    <button className="btn btn-success" onClick={onToggleImportant}>
                         <i className="fa fa-bolt" aria-hidden="true"></i>
                     </button>
                 </div>
