@@ -18,7 +18,8 @@ export default class App extends Component {
       this.createNewItem('Build React App'),
       this.createNewItem('Have a lunch')
     ],
-    term: ''
+    term: '',
+    filter: 'all'
   };
   
   createNewItem(label) {
@@ -93,18 +94,38 @@ export default class App extends Component {
     });
   }
 
-  setTerm = (newTerm) => {
+  filter(items, filter) {
+    console.log(`## filter is ${filter}`);
+    switch(filter) {
+      case 'all':
+        return items;
+      case 'active':
+        return items.filter((item) => !item.done);
+      case 'done':
+        return items.filter((item) => item.done);
+      default: 
+        return items;
+    }
+  }
+
+  onChangeTerm = (newTerm) => {
     console.log(`## setTerm is ${newTerm}`);
     this.setState({
       term: newTerm
     })
   }
 
+  onChangeFilter = (filter) => {
+    this.setState({
+      filter
+    });
+  }
+
   render() {
-    const { todoData, term } = this.state;
+    const { todoData, term, filter } = this.state;
 
 
-    const visibleItems = this.search(todoData, term);
+    const visibleItems = this.filter(this.search(todoData, term), filter);
     const doneCount = todoData.filter((el)=>el.done).length;
     const todoCount = todoData.length - doneCount;
 
@@ -117,10 +138,12 @@ export default class App extends Component {
         </div>
         <div className="row form-group">
           <div className="col">
-            <SearchPanel onSetTerm={this.setTerm} />
+            <SearchPanel onSetTerm={this.onChangeTerm} />
           </div>
           <div className="col-auto">
-            <ItemStatusFilter />
+            <ItemStatusFilter 
+              onChangeFilter={this.onChangeFilter} 
+              filter={filter} />
           </div>
         </div>
         <div className="row form-group">
