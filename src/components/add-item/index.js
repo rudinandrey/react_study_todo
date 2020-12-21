@@ -31,6 +31,7 @@ export default class AddItem extends Component {
         <button
           type="button"
           className="btn btn-outline-secondary"
+          onClick={this.onSubmit}
         >
           Add item
         </button>
