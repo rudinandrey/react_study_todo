@@ -18,6 +18,7 @@ export default class App extends Component {
       this.createNewItem('Build React App'),
       this.createNewItem('Have a lunch')
     ],
+    term: ''
   };
   
   createNewItem(label) {
@@ -84,11 +85,26 @@ export default class App extends Component {
     });
   }
 
+  search(items, term) {
+    if (term == '') return items;
+
+    return items.filter((item) => {
+      return item.label.indexOf(term) > -1;
+    });
+  }
+
+  setTerm = (newTerm) => {
+    console.log(`## setTerm is ${newTerm}`);
+    this.setState({
+      term: newTerm
+    })
+  }
+
   render() {
-    const { todoData } = this.state;
+    const { todoData, term } = this.state;
 
 
-
+    const visibleItems = this.search(todoData, term);
     const doneCount = todoData.filter((el)=>el.done).length;
     const todoCount = todoData.length - doneCount;
 
@@ -101,7 +117,7 @@ export default class App extends Component {
         </div>
         <div className="row form-group">
           <div className="col">
-            <SearchPanel />
+            <SearchPanel onSetTerm={this.setTerm} />
           </div>
           <div className="col-auto">
             <ItemStatusFilter />
@@ -109,7 +125,7 @@ export default class App extends Component {
         </div>
         <div className="row form-group">
           <div className="col">
-            <TodoList todos={todoData} 
+            <TodoList todos={visibleItems} 
               onDeleted={this.deleteItem} 
               onToggleImportant={this.onToggleImportant} 
               onToggleDone={this.onToggleDone} />
